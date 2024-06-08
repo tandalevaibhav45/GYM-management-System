@@ -56,13 +56,20 @@
               <li><a href="#">View Profile</a></li>
             </ul>
           </li>
-          <li><a href="/signin">SignIN</a></li>
-        </ul>
+          {% if not request.user.is_authenticated %}
+            <li><a href="/signup">SignIN</a></li>
+          {% else %}
+          <li><a href="/logout">Logout</a></li>
+          <!-- <a class="get-started-btn scrollto" href="/">Welcome</a> -->
+         
+        {% endif %}
+          </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="/achievements">Gym Awards</a>
-
+      {% if not request.user.is_authenticated %}
+      <a class="get-started-btn scrollto" href="/">Welcome</a>
+      {% endif %}
     </div>
   </header>
 
