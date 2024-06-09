@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from gym_app.models import Contact,MembershipPlan,Trainer
 #add here some logic
 # Create your views here.
 
@@ -64,3 +65,24 @@ def logout_user(request):
     logout(request)
     messages.success(request,"Logout User")
     return redirect ('/login')
+
+
+def contact(request):
+    if request.method=="POST":
+        username=request.POST.get('fullname')
+        email=request.POST.get('email')
+        number=request.POST.get('num')
+        description=request.POST.get('desc')
+        myuser=Contact(name=username,email=email,phonenumber=number,description=description)
+        myuser.save()
+        messages.info(request,"Thank you for contacting us")
+        return redirect("/contact")
+    return render(request,"contact.html")
+
+
+
+def handleEnroll(request):
+    Membership=MembershipPlan.objects.all()
+    trainer=Trainer.objects.all()
+    context={"Membership":Membership,"SelectTrainer":trainer}
+    return render(request,"enroll.html",context)
