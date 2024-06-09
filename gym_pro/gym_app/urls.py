@@ -8,6 +8,12 @@ urlpatterns = [
     path('logout',views.logout_user,name="logout" ),
     path('contact',views.contact,name="contact" ),
     path('join',views.handleEnroll,name="handleEnroll" ),
+    path('profile',views.handleprofile,name="handleprofile" ),
+    path('gallary',views.handle_gallary,name="handle_gallary" ),
+    path('attendance',views.handle_att,name="handle_att" ),
+
+
+
 
 
 
